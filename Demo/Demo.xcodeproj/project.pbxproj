@@ -14,6 +14,10 @@
 		D46DC43F1D051AA600D1A962 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46DC43D1D051AA600D1A962 /* LaunchScreen.storyboard */; };
 		D46DC44A1D051AA600D1A962 /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4491D051AA600D1A962 /* DemoTests.swift */; };
 		D46DC4551D051AA600D1A962 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4541D051AA600D1A962 /* DemoUITests.swift */; };
+		D46DC46C1D05619200D1A962 /* SimpleActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC46B1D05619200D1A962 /* SimpleActionSheet.framework */; };
+		D46DC46D1D05619200D1A962 /* SimpleActionSheet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC46B1D05619200D1A962 /* SimpleActionSheet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D46DC4701D0561A100D1A962 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC46F1D0561A100D1A962 /* SnapKit.framework */; };
+		D46DC4731D0562D400D1A962 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4721D0562D400D1A962 /* ActionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +37,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D46DC46E1D05619200D1A962 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D46DC46D1D05619200D1A962 /* SimpleActionSheet.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D46DC4311D051AA600D1A962 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46DC4341D051AA600D1A962 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +65,9 @@
 		D46DC4501D051AA600D1A962 /* DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46DC4541D051AA600D1A962 /* DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 		D46DC4561D051AA600D1A962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46DC46B1D05619200D1A962 /* SimpleActionSheet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SimpleActionSheet.framework; path = "/Users/zetasq/Library/Developer/Xcode/DerivedData/SimpleActionSheet-bzkmdzetamhkamhdaeavxtaanohk/Build/Products/Debug-iphoneos/SimpleActionSheet.framework"; sourceTree = "<absolute>"; };
+		D46DC46F1D0561A100D1A962 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		D46DC4721D0562D400D1A962 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46DC4701D0561A100D1A962 /* SnapKit.framework in Frameworks */,
+				D46DC46C1D05619200D1A962 /* SimpleActionSheet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +100,8 @@
 		D46DC4281D051AA600D1A962 = {
 			isa = PBXGroup;
 			children = (
+				D46DC46F1D0561A100D1A962 /* SnapKit.framework */,
+				D46DC46B1D05619200D1A962 /* SimpleActionSheet.framework */,
 				D46DC4331D051AA600D1A962 /* Demo */,
 				D46DC4481D051AA600D1A962 /* DemoTests */,
 				D46DC4531D051AA600D1A962 /* DemoUITests */,
@@ -97,12 +122,10 @@
 		D46DC4331D051AA600D1A962 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				D46DC4341D051AA600D1A962 /* AppDelegate.swift */,
-				D46DC4361D051AA600D1A962 /* ViewController.swift */,
 				D46DC4381D051AA600D1A962 /* Main.storyboard */,
-				D46DC43B1D051AA600D1A962 /* Assets.xcassets */,
-				D46DC43D1D051AA600D1A962 /* LaunchScreen.storyboard */,
-				D46DC4401D051AA600D1A962 /* Info.plist */,
+				D46DC4361D051AA600D1A962 /* ViewController.swift */,
+				D46DC4721D0562D400D1A962 /* ActionCell.swift */,
+				D46DC4741D0562D900D1A962 /* Supporting Files */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -125,6 +148,17 @@
 			path = DemoUITests;
 			sourceTree = "<group>";
 		};
+		D46DC4741D0562D900D1A962 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D46DC4341D051AA600D1A962 /* AppDelegate.swift */,
+				D46DC43B1D051AA600D1A962 /* Assets.xcassets */,
+				D46DC43D1D051AA600D1A962 /* LaunchScreen.storyboard */,
+				D46DC4401D051AA600D1A962 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +169,8 @@
 				D46DC42D1D051AA600D1A962 /* Sources */,
 				D46DC42E1D051AA600D1A962 /* Frameworks */,
 				D46DC42F1D051AA600D1A962 /* Resources */,
+				D46DC46E1D05619200D1A962 /* Embed Frameworks */,
+				D46DC4711D0561AE00D1A962 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -193,6 +229,7 @@
 				TargetAttributes = {
 					D46DC4301D051AA600D1A962 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DHNJ8N28ZZ;
 					};
 					D46DC4441D051AA600D1A962 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -251,11 +288,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D46DC4711D0561AE00D1A962 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/../Carthage/Build/iOS/SnapKit.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D46DC42D1D051AA600D1A962 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46DC4731D0562D400D1A962 /* ActionCell.swift in Sources */,
 				D46DC4371D051AA600D1A962 /* ViewController.swift in Sources */,
 				D46DC4351D051AA600D1A962 /* AppDelegate.swift in Sources */,
 			);
@@ -401,7 +456,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dia.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,7 +470,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dia.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +545,7 @@
 				D46DC45B1D051AA600D1A962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D46DC45C1D051AA600D1A962 /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +554,7 @@
 				D46DC45E1D051AA600D1A962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D46DC45F1D051AA600D1A962 /* Build configuration list for PBXNativeTarget "DemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +563,7 @@
 				D46DC4611D051AA600D1A962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

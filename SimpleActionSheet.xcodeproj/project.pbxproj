@@ -11,6 +11,7 @@
 		D46DC4191D05192600D1A962 /* SimpleActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC40E1D05192600D1A962 /* SimpleActionSheet.framework */; };
 		D46DC41E1D05192600D1A962 /* SimpleActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC41D1D05192600D1A962 /* SimpleActionSheetTests.swift */; };
 		D46DC4661D051C2700D1A962 /* SimpleActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4651D051C2700D1A962 /* SimpleActionSheet.swift */; };
+		D46DC4681D051F2200D1A962 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC4671D051F2200D1A962 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		D46DC41D1D05192600D1A962 /* SimpleActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActionSheetTests.swift; sourceTree = "<group>"; };
 		D46DC41F1D05192600D1A962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D46DC4651D051C2700D1A962 /* SimpleActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleActionSheet.swift; sourceTree = "<group>"; };
+		D46DC4671D051F2200D1A962 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46DC4681D051F2200D1A962 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +58,7 @@
 		D46DC4041D05192600D1A962 = {
 			isa = PBXGroup;
 			children = (
+				D46DC4671D051F2200D1A962 /* SnapKit.framework */,
 				D46DC4101D05192600D1A962 /* SimpleActionSheet */,
 				D46DC4641D051BC400D1A962 /* Source */,
 				D46DC41C1D05192600D1A962 /* SimpleActionSheetTests */,
@@ -327,6 +331,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SimpleActionSheet/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -345,6 +353,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SimpleActionSheet/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
