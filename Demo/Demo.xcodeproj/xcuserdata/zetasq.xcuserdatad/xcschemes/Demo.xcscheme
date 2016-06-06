@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D46DC40D1D05192600D1A962"
-               BuildableName = "SimpleActionSheet.framework"
-               BlueprintName = "SimpleActionSheet"
-               ReferencedContainer = "container:SimpleActionSheet.xcodeproj">
+               BlueprintIdentifier = "D46DC4301D051AA600D1A962"
+               BuildableName = "Demo.app"
+               BlueprintName = "Demo"
+               ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D46DC4171D05192600D1A962"
-               BuildableName = "SimpleActionSheetTests.xctest"
-               BlueprintName = "SimpleActionSheetTests"
-               ReferencedContainer = "container:SimpleActionSheet.xcodeproj">
+               BlueprintIdentifier = "D46DC4441D051AA600D1A962"
+               BuildableName = "DemoTests.xctest"
+               BlueprintName = "DemoTests"
+               ReferencedContainer = "container:Demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D46DC44F1D051AA600D1A962"
+               BuildableName = "DemoUITests.xctest"
+               BlueprintName = "DemoUITests"
+               ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D46DC40D1D05192600D1A962"
-            BuildableName = "SimpleActionSheet.framework"
-            BlueprintName = "SimpleActionSheet"
-            ReferencedContainer = "container:SimpleActionSheet.xcodeproj">
+            BlueprintIdentifier = "D46DC4301D051AA600D1A962"
+            BuildableName = "Demo.app"
+            BlueprintName = "Demo"
+            ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -61,15 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D46DC40D1D05192600D1A962"
-            BuildableName = "SimpleActionSheet.framework"
-            BlueprintName = "SimpleActionSheet"
-            ReferencedContainer = "container:SimpleActionSheet.xcodeproj">
+            BlueprintIdentifier = "D46DC4301D051AA600D1A962"
+            BuildableName = "Demo.app"
+            BlueprintName = "Demo"
+            ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,15 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D46DC40D1D05192600D1A962"
-            BuildableName = "SimpleActionSheet.framework"
-            BlueprintName = "SimpleActionSheet"
-            ReferencedContainer = "container:SimpleActionSheet.xcodeproj">
+            BlueprintIdentifier = "D46DC4301D051AA600D1A962"
+            BuildableName = "Demo.app"
+            BlueprintName = "Demo"
+            ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
