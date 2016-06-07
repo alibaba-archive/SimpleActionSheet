@@ -124,6 +124,11 @@ public class SimpleActionSheet: UIViewController {
     // MARK: - UI Config
     private func setupUI() {
         view.backgroundColor = UIColor.clearColor()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.blankAreaTapped))
+        tapGestureRecognizer.delegate = self
+        view.addGestureRecognizer(tapGestureRecognizer)
+        
         view.addSubview(containerView)
         
         do {
@@ -180,6 +185,14 @@ public class SimpleActionSheet: UIViewController {
     // MARK: - Action Handlers
     func cancellingButtonTapped() {
         dismissActionSheet { 
+            self.dismissViewControllerAnimated(false) {
+                self.delegate?.didTapCancellingButton()
+            }
+        }
+    }
+    
+    func blankAreaTapped() {
+        dismissActionSheet {
             self.dismissViewControllerAnimated(false) {
                 self.delegate?.didTapCancellingButton()
             }
@@ -254,6 +267,17 @@ extension SimpleActionSheet: UITableViewDelegate {
             self.dismissViewControllerAnimated(false) {
                 self.delegate?.didSelectActionCellAt(indexPath.row, forActionSheet: self)
             }
+        }
+    }
+}
+
+// MARK: - UIGestureRecognizer Delegate
+extension SimpleActionSheet: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if touch.view?.isDescendantOfView(containerView) ?? false {
+            return false
+        } else {
+            return true
         }
     }
 }

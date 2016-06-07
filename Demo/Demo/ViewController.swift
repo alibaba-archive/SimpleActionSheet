@@ -94,7 +94,6 @@ extension ViewController: SimpleActionSheetDelegate {
 class CustomButton: UIButton {
     override var highlighted: Bool {
         didSet {
-            print("highlighted: \(highlighted)")
             if highlighted {
                 backgroundColor = UIColor.grayColor()
             } else {
