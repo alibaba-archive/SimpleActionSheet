@@ -12,8 +12,8 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    lazy var strangeButton: UIButton! = {
-        let strangeButton = UIButton()
+    lazy var strangeButton: CustomButton! = {
+        let strangeButton = CustomButton()
         
         strangeButton.setTitle("click here", forState: .Normal)
         strangeButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         view.addSubview(strangeButton)
         strangeButton.snp_makeConstraints { make in
             make.center.equalTo(view)
+            make.width.equalTo(view)
         }
     }
     
@@ -67,12 +68,11 @@ extension ViewController: SimpleActionSheetDataSource {
     }
     
     func cancellingButtonFor(actionSheet: SimpleActionSheet) -> UIButton? {
-        let button = UIButton(type: .Custom)
+        let button = CustomButton(type: .Custom)
         
         button.backgroundColor = UIColor.whiteColor()
         button.setTitle("Cancel", forState: .Normal)
         button.setTitleColor(UIColor.cyanColor(), forState: .Normal)
-        
         button.snp_makeConstraints { (make) in
             make.height.equalTo(44)
         }
@@ -90,3 +90,27 @@ extension ViewController: SimpleActionSheetDelegate {
         print("didTapCancellingButton")
     }
 }
+
+class CustomButton: UIButton {
+    override var highlighted: Bool {
+        didSet {
+            print("highlighted: \(highlighted)")
+            if highlighted {
+                backgroundColor = UIColor.grayColor()
+            } else {
+                backgroundColor = UIColor.whiteColor()
+            }
+        }
+    }
+    
+    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+        let inside = super.pointInside(point, withEvent: event)
+        
+        if inside != highlighted && event?.type == .Touches {
+            highlighted = inside
+        }
+        
+        return inside
+    }
+}
+
