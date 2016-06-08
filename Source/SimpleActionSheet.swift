@@ -54,13 +54,17 @@ extension SimpleActionSheetDelegate {
 // MARK: - SimpleActionSheet
 public class SimpleActionSheet: UIViewController {
     // MARK: - Properties
+    public var separatorColor: UIColor? = UIColor.grayColor()
+    public var cornerRadius: CGFloat = 10
+    
     public private(set) lazy var tableView: UITableView! = {
         let tableView = UITableView(frame: .zero, style: .Plain)
         
-        tableView.layer.cornerRadius = 10
+        tableView.layer.cornerRadius = self.cornerRadius
         tableView.clipsToBounds = true
         tableView.scrollEnabled = false
         
+        tableView.separatorColor = self.separatorColor
         tableView.separatorInset = UIEdgeInsetsZero
         
         tableView.dataSource = self
@@ -81,7 +85,7 @@ public class SimpleActionSheet: UIViewController {
     private var cancellingButton: UIButton? {
         didSet {
             if let button = cancellingButton {
-                button.layer.cornerRadius = tableView.layer.cornerRadius
+                button.layer.cornerRadius = cornerRadius
                 button.clipsToBounds = true
                 
                 button.addTarget(self, action: #selector(self.cancellingButtonTapped), forControlEvents: .TouchUpInside)
@@ -252,8 +256,6 @@ extension SimpleActionSheet: UITableViewDataSource {
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = dataSource!.actionCellAt(indexPath.row, forActionSheet: self)
-        
         return dataSource!.actionCellAt(indexPath.row, forActionSheet: self)
     }
 }
