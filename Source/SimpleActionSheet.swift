@@ -20,7 +20,7 @@ public protocol SimpleActionSheetDataSource: class {
     func cancellingButtonFor(actionSheet: SimpleActionSheet) -> UIButton?
 }
 
-extension SimpleActionSheetDataSource {
+public extension SimpleActionSheetDataSource {
     func numberOfActionCellsFor(actionSheet: SimpleActionSheet) -> Int {
         return 0
     }
@@ -40,31 +40,53 @@ extension SimpleActionSheetDataSource {
 
 // MARK: - SimpleActionSheetDelegate
 public protocol SimpleActionSheetDelegate: class {
+    func willSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int?
+    
     func didSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet)
     
-    func didTapCancellingButton()
+    func didTapCancellingButton(actionSheet actionSheet: SimpleActionSheet)
 }
 
-extension SimpleActionSheetDelegate {
+public extension SimpleActionSheetDelegate {
+    func willSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int? {
+        return row
+    }
+    
     func didSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) {}
     
-    func didTapCancellingButton() {}
+    func didTapCancellingButton(actionSheet actionSheet: SimpleActionSheet) {}
 }
 
 // MARK: - SimpleActionSheet
 public class SimpleActionSheet: UIViewController {
     // MARK: - Properties
-    public var separatorColor: UIColor? = UIColor.grayColor()
-    public var cornerRadius: CGFloat = 10
+    public var separatorColor: UIColor? {
+        get {
+            return tableView.separatorColor
+        }
+        set {
+            tableView.separatorColor = newValue
+        }
+    }
+    
+    public var cornerRadius: CGFloat {
+        get {
+            return tableView.layer.cornerRadius
+        }
+        set {
+            tableView.layer.cornerRadius = newValue
+        }
+    }
+    
+    public var cancelButtonHeight: CGFloat = 57
     
     public private(set) lazy var tableView: UITableView! = {
         let tableView = UITableView(frame: .zero, style: .Plain)
         
-        tableView.layer.cornerRadius = self.cornerRadius
+        tableView.layer.cornerRadius = 10
         tableView.clipsToBounds = true
         tableView.scrollEnabled = false
         
-        tableView.separatorColor = self.separatorColor
         tableView.separatorInset = UIEdgeInsetsZero
         
         tableView.dataSource = self
@@ -85,7 +107,7 @@ public class SimpleActionSheet: UIViewController {
     private var cancellingButton: UIButton? {
         didSet {
             if let button = cancellingButton {
-                button.layer.cornerRadius = cornerRadius
+                button.layer.cornerRadius = tableView.layer.cornerRadius
                 button.clipsToBounds = true
                 
                 button.addTarget(self, action: #selector(self.cancellingButtonTapped), forControlEvents: .TouchUpInside)
@@ -162,6 +184,7 @@ public class SimpleActionSheet: UIViewController {
                     make.right.equalTo(tableView)
                     make.top.equalTo(tableView.snp_bottom).offset(7)
                     make.bottom.equalTo(containerView)
+                    make.height.equalTo(cancelButtonHeight)
                 }
             } else {
                 tableView.snp_remakeConstraints { make in
@@ -188,18 +211,18 @@ public class SimpleActionSheet: UIViewController {
     
     // MARK: - Action Handlers
     func cancellingButtonTapped() {
-        dismissActionSheet { 
-            self.dismissViewControllerAnimated(false) {
-                self.delegate?.didTapCancellingButton()
-            }
+        delegate?.didTapCancellingButton(actionSheet: self)
+
+        dismissActionSheet {
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     
     func blankAreaTapped() {
+        delegate?.didTapCancellingButton(actionSheet: self)
+        
         dismissActionSheet {
-            self.dismissViewControllerAnimated(false) {
-                self.delegate?.didTapCancellingButton()
-            }
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     
@@ -262,13 +285,21 @@ extension SimpleActionSheet: UITableViewDataSource {
 
 // MARK: - UITableView Delegate
 extension SimpleActionSheet: UITableViewDelegate {
+    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if let row = delegate?.willSelectActionCellAt(indexPath.row, forActionSheet: self) where row == indexPath.row {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        delegate?.didSelectActionCellAt(indexPath.row, forActionSheet: self)
+
         dismissActionSheet {
-            self.dismissViewControllerAnimated(false) {
-                self.delegate?.didSelectActionCellAt(indexPath.row, forActionSheet: self)
-            }
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
 }
