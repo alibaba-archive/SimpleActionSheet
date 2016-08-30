@@ -85,7 +85,6 @@ public class SimpleActionSheet: UIViewController {
         
         tableView.layer.cornerRadius = 10
         tableView.clipsToBounds = true
-        tableView.scrollEnabled = false
         
         tableView.separatorInset = UIEdgeInsetsZero
         
@@ -177,8 +176,9 @@ public class SimpleActionSheet: UIViewController {
                     make.height.equalTo(tableViewHeight)
                 }
                 
-                containerView.addSubview(cancellingButton)
+                cancellingButton.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh + 1, forAxis: .Horizontal)
                 
+                containerView.addSubview(cancellingButton)
                 cancellingButton.snp_remakeConstraints { make in
                     make.left.equalTo(tableView)
                     make.right.equalTo(tableView)
@@ -236,6 +236,7 @@ public class SimpleActionSheet: UIViewController {
         
         UIView.animateWithDuration(0.2, delay: 0, options: [.CurveEaseInOut], animations: {
             self.containerView.snp_remakeConstraints { make in
+                make.top.greaterThanOrEqualTo(self.snp_topLayoutGuideBottom)
                 make.left.equalTo(self.view)
                 make.right.equalTo(self.view)
                 make.bottom.equalTo(self.view).offset(-9)
