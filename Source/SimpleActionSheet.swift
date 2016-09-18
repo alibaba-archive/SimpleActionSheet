@@ -11,56 +11,56 @@ import SnapKit
 
 // MARK: - SimpleActionSheetDataSource
 public protocol SimpleActionSheetDataSource: class {
-    func numberOfActionCellsFor(actionSheet: SimpleActionSheet) -> Int
+    func numberOfActionCellsFor(_ actionSheet: SimpleActionSheet) -> Int
     
-    func heightForActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat
+    func heightForActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat
     
-    func actionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell
+    func actionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell
     
-    func cancellingButtonFor(actionSheet: SimpleActionSheet) -> UIButton?
+    func cancellingButtonFor(_ actionSheet: SimpleActionSheet) -> UIButton?
 }
 
 public extension SimpleActionSheetDataSource {
-    func numberOfActionCellsFor(actionSheet: SimpleActionSheet) -> Int {
+    func numberOfActionCellsFor(_ actionSheet: SimpleActionSheet) -> Int {
         return 0
     }
     
-    func heightForActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat {
+    func heightForActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat {
         return 44
     }
     
-    func actionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell {
+    func actionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell {
         fatalError("Error: method actionCellAt(_:forActionSheet:) not implemented.")
     }
     
-    func cancellingButtonFor(actionSheet: SimpleActionSheet) -> UIButton? {
+    func cancellingButtonFor(_ actionSheet: SimpleActionSheet) -> UIButton? {
         return nil
     }
 }
 
 // MARK: - SimpleActionSheetDelegate
 public protocol SimpleActionSheetDelegate: class {
-    func willSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int?
+    func willSelectActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int?
     
-    func didSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet)
+    func didSelectActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet)
     
-    func didTapCancellingButton(actionSheet actionSheet: SimpleActionSheet)
+    func didTapCancellingButton(actionSheet: SimpleActionSheet)
 }
 
 public extension SimpleActionSheetDelegate {
-    func willSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int? {
+    func willSelectActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> Int? {
         return row
     }
     
-    func didSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) {}
+    func didSelectActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) {}
     
-    func didTapCancellingButton(actionSheet actionSheet: SimpleActionSheet) {}
+    func didTapCancellingButton(actionSheet: SimpleActionSheet) {}
 }
 
 // MARK: - SimpleActionSheet
-public class SimpleActionSheet: UIViewController {
+open class SimpleActionSheet: UIViewController {
     // MARK: - Properties
-    public var separatorColor: UIColor? {
+    open var separatorColor: UIColor? {
         get {
             return tableView.separatorColor
         }
@@ -69,7 +69,7 @@ public class SimpleActionSheet: UIViewController {
         }
     }
     
-    public var cornerRadius: CGFloat {
+    open var cornerRadius: CGFloat {
         get {
             return tableView.layer.cornerRadius
         }
@@ -78,15 +78,15 @@ public class SimpleActionSheet: UIViewController {
         }
     }
     
-    public var cancelButtonHeight: CGFloat = 57
+    open var cancelButtonHeight: CGFloat = 57
     
-    public private(set) lazy var tableView: UITableView! = {
-        let tableView = UITableView(frame: .zero, style: .Plain)
+    open fileprivate(set) lazy var tableView: UITableView! = {
+        let tableView = UITableView(frame: .zero, style: .plain)
         
         tableView.layer.cornerRadius = 10
         tableView.clipsToBounds = true
         
-        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.separatorInset = UIEdgeInsets.zero
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -98,57 +98,57 @@ public class SimpleActionSheet: UIViewController {
         return tableView
     }()
     
-    public weak var dataSource: SimpleActionSheetDataSource?
-    public weak var delegate: SimpleActionSheetDelegate?
+    open weak var dataSource: SimpleActionSheetDataSource?
+    open weak var delegate: SimpleActionSheetDelegate?
     
-    private var isFirstAppear = true
+    fileprivate var isFirstAppear = true
     
-    private var cancellingButton: UIButton? {
+    fileprivate var cancellingButton: UIButton? {
         didSet {
             if let button = cancellingButton {
                 button.layer.cornerRadius = tableView.layer.cornerRadius
                 button.clipsToBounds = true
                 
-                button.addTarget(self, action: #selector(self.cancellingButtonTapped), forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(self.cancellingButtonTapped), for: .touchUpInside)
             }
         }
     }
     
-    private lazy var containerView: UIView! = {
+    fileprivate lazy var containerView: UIView! = {
         let containerView = UIView()
         
         return containerView
     }()
     
     // MARK: - Init & Deinit
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        modalPresentationStyle = .OverCurrentContext
+        modalPresentationStyle = .overCurrentContext
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        modalPresentationStyle = .OverCurrentContext
+        modalPresentationStyle = .overCurrentContext
     }
     
     // MARK: - VC Life Cycle
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         showActionSheet()
     }
     
     // MARK: - UI Config
-    private func setupUI() {
-        view.backgroundColor = UIColor.clearColor()
+    fileprivate func setupUI() {
+        view.backgroundColor = UIColor.clear
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.blankAreaTapped))
         tapGestureRecognizer.delegate = self
@@ -161,7 +161,7 @@ public class SimpleActionSheet: UIViewController {
             cancellingButton = dataSource?.cancellingButtonFor(self)
             
             if let cancellingButton = cancellingButton {
-                tableView.snp_remakeConstraints { make in
+                tableView.snp.remakeConstraints { make in
                     make.left.equalTo(containerView).offset(10)
                     make.right.equalTo(containerView).offset(-10)
                     make.top.equalTo(containerView)
@@ -176,18 +176,18 @@ public class SimpleActionSheet: UIViewController {
                     make.height.equalTo(tableViewHeight)
                 }
                 
-                cancellingButton.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh + 1, forAxis: .Horizontal)
+                cancellingButton.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh + 1, for: .horizontal)
                 
                 containerView.addSubview(cancellingButton)
-                cancellingButton.snp_remakeConstraints { make in
+                cancellingButton.snp.remakeConstraints { make in
                     make.left.equalTo(tableView)
                     make.right.equalTo(tableView)
-                    make.top.equalTo(tableView.snp_bottom).offset(7)
+                    make.top.equalTo(tableView.snp.bottom).offset(7)
                     make.bottom.equalTo(containerView)
                     make.height.equalTo(cancelButtonHeight)
                 }
             } else {
-                tableView.snp_remakeConstraints { make in
+                tableView.snp.remakeConstraints { make in
                     make.edges.equalTo(containerView)
                     
                     var tableViewHeight: CGFloat = 0
@@ -202,10 +202,10 @@ public class SimpleActionSheet: UIViewController {
             }
         }
         
-        containerView.snp_remakeConstraints { make in
+        containerView.snp.remakeConstraints { make in
             make.left.equalTo(view)
             make.right.equalTo(view)
-            make.top.equalTo(view.snp_bottom)
+            make.top.equalTo(view.snp.bottom)
         }
     }
     
@@ -214,7 +214,7 @@ public class SimpleActionSheet: UIViewController {
         delegate?.didTapCancellingButton(actionSheet: self)
 
         dismissActionSheet {
-            self.dismissViewControllerAnimated(false, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         }
     }
     
@@ -222,42 +222,42 @@ public class SimpleActionSheet: UIViewController {
         delegate?.didTapCancellingButton(actionSheet: self)
         
         dismissActionSheet {
-            self.dismissViewControllerAnimated(false, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         }
     }
     
     // MAKR: - UI Animation
-    private func showActionSheet() {
+    fileprivate func showActionSheet() {
         guard isFirstAppear else {
             return
         }
         
         isFirstAppear = false
         
-        UIView.animateWithDuration(0.2, delay: 0, options: [.CurveEaseInOut], animations: {
-            self.containerView.snp_remakeConstraints { make in
-                make.top.greaterThanOrEqualTo(self.snp_topLayoutGuideBottom)
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
+            self.containerView.snp.remakeConstraints { make in
+                make.top.greaterThanOrEqualTo(self.topLayoutGuide.snp.bottom)
                 make.left.equalTo(self.view)
                 make.right.equalTo(self.view)
                 make.bottom.equalTo(self.view).offset(-9)
             }
             
             self.view.layoutIfNeeded()
-            self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
             
             }, completion: nil)
     }
     
-    private func dismissActionSheet(completion: () -> Void) {
-        UIView.animateWithDuration(0.2, delay: 0, options: [.CurveEaseInOut], animations: {
-            self.containerView.snp_remakeConstraints { make in
+    fileprivate func dismissActionSheet(_ completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
+            self.containerView.snp.remakeConstraints { make in
                 make.left.equalTo(self.view)
                 make.right.equalTo(self.view)
-                make.top.equalTo(self.view.snp_bottom)
+                make.top.equalTo(self.view.snp.bottom)
             }
             
             self.view.layoutIfNeeded()
-            self.view.backgroundColor = UIColor.clearColor()
+            self.view.backgroundColor = UIColor.clear
             
             }, completion: { finished in
                 completion()
@@ -267,48 +267,48 @@ public class SimpleActionSheet: UIViewController {
 
 // MARK: - UITableView DataSource
 extension SimpleActionSheet: UITableViewDataSource {
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource?.numberOfActionCellsFor(self) ?? 0
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return dataSource?.heightForActionCellAt(indexPath.row, forActionSheet: self) ?? 44
+    @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return dataSource?.heightForActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self) ?? 44
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return dataSource!.actionCellAt(indexPath.row, forActionSheet: self)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return dataSource!.actionCellAt((indexPath as NSIndexPath).row, forActionSheet: self)
     }
 }
 
 // MARK: - UITableView Delegate
 extension SimpleActionSheet: UITableViewDelegate {
-    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if let row = delegate?.willSelectActionCellAt(indexPath.row, forActionSheet: self) where row == indexPath.row {
+    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let row = delegate?.willSelectActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self) , row == (indexPath as NSIndexPath).row {
             return indexPath
         } else {
             return nil
         }
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        delegate?.didSelectActionCellAt(indexPath.row, forActionSheet: self)
+        delegate?.didSelectActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self)
 
         dismissActionSheet {
-            self.dismissViewControllerAnimated(false, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         }
     }
 }
 
 // MARK: - UIGestureRecognizer Delegate
 extension SimpleActionSheet: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if touch.view?.isDescendantOfView(containerView) ?? false {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: containerView) ?? false {
             return false
         } else {
             return true

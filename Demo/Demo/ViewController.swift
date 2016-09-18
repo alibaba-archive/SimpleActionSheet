@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     lazy var strangeButton: CustomButton! = {
         let strangeButton = CustomButton()
         
-        strangeButton.setTitle("click here", forState: .Normal)
-        strangeButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
-        strangeButton.addTarget(self, action: #selector(self.strangeButtonTapped), forControlEvents: .TouchUpInside)
+        strangeButton.setTitle("click here", for: UIControlState())
+        strangeButton.setTitleColor(UIColor.cyan, for: UIControlState())
+        strangeButton.addTarget(self, action: #selector(self.strangeButtonTapped), for: .touchUpInside)
         
         return strangeButton
     }()
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     }
 
     func setupUI() {
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         view.addSubview(strangeButton)
         strangeButton.snp_makeConstraints { make in
@@ -44,35 +44,35 @@ class ViewController: UIViewController {
         actionSheet.dataSource = self
         actionSheet.delegate = self
         
-        actionSheet.tableView.registerClass(ActionCell.self, forCellReuseIdentifier: "ActionCell")
+        actionSheet.tableView.register(ActionCell.self, forCellReuseIdentifier: "ActionCell")
         
-        presentViewController(actionSheet, animated: false, completion: nil)
+        present(actionSheet, animated: false, completion: nil)
     }
 }
 
 extension ViewController: SimpleActionSheetDataSource {
-    func numberOfActionCellsFor(actionSheet: SimpleActionSheet) -> Int {
+    func numberOfActionCellsFor(_ actionSheet: SimpleActionSheet) -> Int {
         return 3
     }
     
-    func heightForActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat {
+    func heightForActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> CGFloat {
         return 44
     }
     
-    func actionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell {
-        let cell = actionSheet.tableView.dequeueReusableCellWithIdentifier("ActionCell") as! ActionCell
+    func actionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) -> UITableViewCell {
+        let cell = actionSheet.tableView.dequeueReusableCell(withIdentifier: "ActionCell") as! ActionCell
         
         cell.titleLabel.text = "Cell at \(row)"
         
         return cell
     }
     
-    func cancellingButtonFor(actionSheet: SimpleActionSheet) -> UIButton? {
-        let button = CustomButton(type: .Custom)
+    func cancellingButtonFor(_ actionSheet: SimpleActionSheet) -> UIButton? {
+        let button = CustomButton(type: .custom)
         
-        button.backgroundColor = UIColor.whiteColor()
-        button.setTitle("Cancel", forState: .Normal)
-        button.setTitleColor(UIColor.cyanColor(), forState: .Normal)
+        button.backgroundColor = UIColor.white
+        button.setTitle("Cancel", for: UIControlState())
+        button.setTitleColor(UIColor.cyan, for: UIControlState())
         button.snp_makeConstraints { (make) in
             make.height.equalTo(44)
         }
@@ -82,7 +82,7 @@ extension ViewController: SimpleActionSheetDataSource {
 }
 
 extension ViewController: SimpleActionSheetDelegate {
-    func didSelectActionCellAt(row: Int, forActionSheet actionSheet: SimpleActionSheet) {
+    func didSelectActionCellAt(_ row: Int, forActionSheet actionSheet: SimpleActionSheet) {
         print("didSelectActionCellAt \(row)")
     }
     
@@ -92,21 +92,21 @@ extension ViewController: SimpleActionSheetDelegate {
 }
 
 class CustomButton: UIButton {
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if highlighted {
-                backgroundColor = UIColor.grayColor()
+            if isHighlighted {
+                backgroundColor = UIColor.gray
             } else {
-                backgroundColor = UIColor.whiteColor()
+                backgroundColor = UIColor.white
             }
         }
     }
     
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let inside = super.pointInside(point, withEvent: event)
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let inside = super.point(inside: point, with: event)
         
-        if inside != highlighted && event?.type == .Touches {
-            highlighted = inside
+        if inside != isHighlighted && event?.type == .touches {
+            isHighlighted = inside
         }
         
         return inside

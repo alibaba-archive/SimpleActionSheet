@@ -10,11 +10,11 @@ import UIKit
 import SnapKit
 
 class ActionCell: UITableViewCell {
-    private(set) lazy var titleLabel: UILabel! = {
+    fileprivate(set) lazy var titleLabel: UILabel! = {
         let titleLabel = UILabel()
         
-        titleLabel.textAlignment = .Center
-        titleLabel.textColor = UIColor.cyanColor()
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.cyan
         
         return titleLabel
     }()
@@ -31,11 +31,11 @@ class ActionCell: UITableViewCell {
         setupUI()
     }
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         preservesSuperviewLayoutMargins = false
-        layoutMargins = UIEdgeInsetsZero
+        layoutMargins = UIEdgeInsets.zero
         
-        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.white
         contentView.addSubview(titleLabel)
         
         titleLabel.snp_makeConstraints { make in
