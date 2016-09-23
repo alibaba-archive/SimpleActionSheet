@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         view.addSubview(strangeButton)
-        strangeButton.snp_makeConstraints { make in
+        strangeButton.snp.makeConstraints { make in
             make.center.equalTo(view)
             make.width.equalTo(view)
         }
@@ -73,7 +73,7 @@ extension ViewController: SimpleActionSheetDataSource {
         button.backgroundColor = UIColor.white
         button.setTitle("Cancel", for: UIControlState())
         button.setTitleColor(UIColor.cyan, for: UIControlState())
-        button.snp_makeConstraints { (make) in
+        button.snp.makeConstraints { (make) in
             make.height.equalTo(44)
         }
         

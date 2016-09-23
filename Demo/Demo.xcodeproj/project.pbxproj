@@ -16,8 +16,8 @@
 		D46DC4551D051AA600D1A962 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4541D051AA600D1A962 /* DemoUITests.swift */; };
 		D46DC4701D0561A100D1A962 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DC46F1D0561A100D1A962 /* SnapKit.framework */; };
 		D46DC4731D0562D400D1A962 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DC4721D0562D400D1A962 /* ActionCell.swift */; };
-		D4D5FF011D8E481000D255D8 /* SimpleActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D5FF001D8E481000D255D8 /* SimpleActionSheet.framework */; };
-		D4D5FF021D8E481000D255D8 /* SimpleActionSheet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4D5FF001D8E481000D255D8 /* SimpleActionSheet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4D2CD451D95101800DA3B30 /* SimpleActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D2CD441D95101800DA3B30 /* SimpleActionSheet.framework */; };
+		D4D2CD461D95101800DA3B30 /* SimpleActionSheet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4D2CD441D95101800DA3B30 /* SimpleActionSheet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D4D5FF031D8E481100D255D8 /* Embed Frameworks */ = {
+		D4D2CD471D95101900DA3B30 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4D5FF021D8E481000D255D8 /* SimpleActionSheet.framework in Embed Frameworks */,
+				D4D2CD461D95101800DA3B30 /* SimpleActionSheet.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,8 +67,7 @@
 		D46DC4561D051AA600D1A962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D46DC46F1D0561A100D1A962 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		D46DC4721D0562D400D1A962 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
-		D4A049531D750E1E00B5A11E /* SimpleActionSheet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SimpleActionSheet.framework; path = "/Users/zetasq/Library/Developer/Xcode/DerivedData/SimpleActionSheet-etqlkcwslgncptfgstffhonfvvna/Build/Products/Debug-iphoneos/SimpleActionSheet.framework"; sourceTree = "<absolute>"; };
-		D4D5FF001D8E481000D255D8 /* SimpleActionSheet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleActionSheet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4D2CD441D95101800DA3B30 /* SimpleActionSheet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleActionSheet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4D5FF011D8E481000D255D8 /* SimpleActionSheet.framework in Frameworks */,
+				D4D2CD451D95101800DA3B30 /* SimpleActionSheet.framework in Frameworks */,
 				D46DC4701D0561A100D1A962 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,8 +100,7 @@
 		D46DC4281D051AA600D1A962 = {
 			isa = PBXGroup;
 			children = (
-				D4D5FF001D8E481000D255D8 /* SimpleActionSheet.framework */,
-				D4A049531D750E1E00B5A11E /* SimpleActionSheet.framework */,
+				D4D2CD441D95101800DA3B30 /* SimpleActionSheet.framework */,
 				D46DC46F1D0561A100D1A962 /* SnapKit.framework */,
 				D46DC4331D051AA600D1A962 /* Demo */,
 				D46DC4481D051AA600D1A962 /* DemoTests */,
@@ -172,7 +170,7 @@
 				D46DC42E1D051AA600D1A962 /* Frameworks */,
 				D46DC42F1D051AA600D1A962 /* Resources */,
 				D46DC4711D0561AE00D1A962 /* ShellScript */,
-				D4D5FF031D8E481100D255D8 /* Embed Frameworks */,
+				D4D2CD471D95101900DA3B30 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,7 +224,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = dia;
 				TargetAttributes = {
 					D46DC4301D051AA600D1A962 = {
@@ -387,8 +385,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -433,8 +433,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -453,6 +455,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

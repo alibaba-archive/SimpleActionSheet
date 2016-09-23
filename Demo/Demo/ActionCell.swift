@@ -38,7 +38,7 @@ class ActionCell: UITableViewCell {
         contentView.backgroundColor = UIColor.white
         contentView.addSubview(titleLabel)
         
-        titleLabel.snp_makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.center.equalTo(contentView)
         }
     }
