@@ -275,10 +275,6 @@ extension SimpleActionSheet: UITableViewDataSource {
         return dataSource?.numberOfActionCellsFor(self) ?? 0
     }
     
-    @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return dataSource?.heightForActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self) ?? 44
-    }
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return dataSource!.actionCellAt((indexPath as NSIndexPath).row, forActionSheet: self)
     }
@@ -286,6 +282,10 @@ extension SimpleActionSheet: UITableViewDataSource {
 
 // MARK: - UITableView Delegate
 extension SimpleActionSheet: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return dataSource?.heightForActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self) ?? 44
+    }
+
     public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let row = delegate?.willSelectActionCellAt((indexPath as NSIndexPath).row, forActionSheet: self) , row == (indexPath as NSIndexPath).row {
             return indexPath
